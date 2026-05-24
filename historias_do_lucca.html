@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Historias do Lucca</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { background: #0f0c29; color: #f0eeff; font-family: Arial, Helvetica, sans-serif; padding: 16px 16px 48px; min-height: 100vh; }
+h1 { text-align: center; font-size: 26px; color: #f9c74f; margin: 16px 0 4px; }
+.sub { text-align: center; font-size: 14px; color: #9b93cc; margin-bottom: 20px; }
+.moon { display: block; text-align: center; font-size: 44px; margin-top: 12px; }
+
+/* Hero scroll row */
+.hrow { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.hrow::-webkit-scrollbar { display: none; }
+.hbtn { flex: 0 0 auto; background: #1a1740; border: 2px solid #333066; border-radius: 14px; padding: 12px 16px; text-align: center; color: #f0eeff; font-size: 13px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; min-width: 90px; }
+.hbtn.on { border-color: #f9c74f; background: #221e50; color: #f9c74f; }
+.eml { font-size: 26px; display: block; margin-bottom: 4px; }
+
+/* Story card */
+.card { background: #1a1740; border-radius: 20px; border: 1px solid #2a2560; padding: 22px 18px; }
+.semoji { font-size: 40px; display: block; text-align: center; margin-bottom: 10px; }
+.stitle { font-size: 19px; font-weight: bold; color: #f9c74f; text-align: center; margin-bottom: 14px; line-height: 1.3; }
+.hdiv { border: none; height: 1px; background: #2a2560; margin-bottom: 16px; }
+.stext { font-size: 16px; line-height: 1.9; color: #ddd8ff; }
+.stext p { margin-bottom: 14px; }
+.stext p:last-child { margin-bottom: 0; }
+.stext b { color: #f9c74f; }
+
+/* Nav buttons */
+.brow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.nbtn { padding: 14px; border-radius: 12px; border: 2px solid #333066; background: #1a1740; color: #f0eeff; font-family: Arial, sans-serif; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; touch-action: manipulation; }
+.nbtn.prx { background: #f9c74f; color: #1a1200; border-color: #f9c74f; }
+.cnt { text-align: center; font-size: 12px; color: #9b93cc; margin-top: 12px; }
+.gn { text-align: center; margin-top: 28px; font-size: 13px; color: #9b93cc; }
+</style>
+</head>
+<body>
+
+<span class="moon">🌙</span>
+<h1>Historias do Lucca</h1>
+<p class="sub">Escolha um heroi e boa noite ✨</p>
+
+<div class="hrow" id="hrow"></div>
+
+<div class="card">
+  <span class="semoji" id="se"></span>
+  <p class="stitle" id="st"></p>
+  <hr class="hdiv">
+  <div class="stext" id="sb"></div>
+  <div class="brow">
+    <button class="nbtn" id="btnPrev" type="button">← Anterior</button>
+    <button class="nbtn prx" id="btnNext" type="button">Proxima →</button>
+  </div>
+  <p class="cnt" id="ct"></p>
+</div>
+
+<p class="gn">💤 Boa noite, Lucca! Sonhos com herois 💤</p>
+
+<script>
+var D = {
+  ferro: {
+    nome: "Homem de Ferro",
+    emoji: "🦾",
+    l: [
+      {
+        t: "A Hora de Dormir do Tony",
+        b: "<p>Era uma noite de ceu estrelado quando Tony Stark finalmente parou de trabalhar. Ele tinha passado o dia inteiro no laboratorio, construindo uma nova peca para a armadura, testando foguetes pequeninhos e ajudando o robo Dum-E a nao derrubar as coisas.</p><p>De repente, a armadura piscou tres vezes. Era o sinal que Tony conhecia bem: bateria fraca. A armadura precisava descansar.</p><p><b>Tudo bem,</b> disse Tony com um sorriso. <b>Eu tambem to cansado.</b> Ele tirou o capacete com cuidado e olhou pela janela. La fora, as estrelas brilhavam como luzes douradas no ceu escuro.</p><p>Tony foi ate a cama, deitou devagarzinho e puxou o cobertor ate o queixo. A armadura ficou do lado, bem quietinha, recarregando energia com um barulhinho suave: <b>bzzz... bzzz...</b></p><p>Ele fechou os olhos e comecou a imaginar: e se ele voasse ate aquelas estrelas? Primeiro devagar, deslizando pelo ar fresquinho. Depois mais rapido, deixando um rastro dourado no ceu. As estrelas foram chegando perto, perto, perto...</p><p>E assim, com um sorriso no rosto, Tony Stark adormeceu. A armadura piscou uma ultima vez, como se dissesse boa noite, e tudo ficou em paz. 💤</p>"
+      },
+      {
+        t: "O Segredo dos Sonhos do Tony",
+        b: "<p>Certa noite, o pequeno robo Dum-E chegou perto de Tony com o braco levantado, como se tivesse uma pergunta importantissima.</p><p><b>Dum-E, o que foi?</b> Tony perguntou, ajeitando o travesseiro.</p><p>O robo inclinou a cabeca de um lado pro outro. Tony entendeu: ele queria saber por que os humanos dormem.</p><p><b>Boa pergunta!</b> disse Tony, sentando na cama. <b>Sabe, quando a gente dorme, o cerebro fica trabalhando feito um computador superpoderoso. Ele arruma todas as memorias do dia, guarda o que e importante. E como atualizar o sistema da armadura!</b></p><p>Dum-E balancou o braco animado, como se dissesse: que incrivel!</p><p><b>E tem mais,</b> Tony continuou, ja bocejando. <b>E durante o sono que a gente cresce, fica mais forte e mais esperto. Os maiores inventores do mundo tiveram suas melhores ideias depois de uma boa noite de sono.</b></p><p>Dum-E pensou um instante, desligou suas luzes piscantes e ficou bem quieto no canto. Tony deu uma risadinha suave, se deitou e fechou os olhos. Em poucos minutos, os dois estavam descansando e amanha, com certeza, teriam ideias ainda mais brilhantes. 🌙</p>"
+      },
+      {
+        t: "Tony e a Estrela Cadente",
+        b: "<p>Naquela noite, Tony Stark estava no terraço do seu predio olhando para o ceu quando viu uma luz riscar o escuro: uma estrela cadente!</p><p>Ele fechou os olhos bem rapido e fez um pedido silencioso. Depois abriu um sorriso.</p><p><b>Pepper,</b> ele chamou baixinho para sua esposa que lia perto dali. <b>Fiz um pedido.</b></p><p><b>Que pedido?</b> ela perguntou curiosa.</p><p><b>Pedi para ter um dia de amanha tao bom quanto o de hoje.</b></p><p>Pepper sorriu e os dois entraram para dormir. Tony se deitou, olhou para o teto escuro e sentiu o cansaco gostoso de quem trabalhou muito e fez o bem.</p><p>Devagar, as imagens do dia foram passando em sua mente como um filme: os inventos, as risadas, os amigos. E com esse filme bonito passando nos olhos da memoria, Tony Stark dormiu profundamente, esperando o amanha. 🌠</p>"
+      }
+    ]
+  },
+  capitao: {
+    nome: "Capitao America",
+    emoji: "🛡️",
+    l: [
+      {
+        t: "O Escudo Que Protege os Sonhos",
+        b: "<p>Depois de um longo dia de aventuras, o Capitao America chegou em casa com o escudo na mao e um sorriso cansado no rosto. Ele tinha corrido muito, ajudado muita gente e ate salvado um gatinho que estava preso em uma arvore.</p><p>Steve Rogers pendurou o escudo azul, vermelho e branco na parede com muito cuidado. O escudo brilhou um pouquinho com o reflexo da lua que entrava pela janela.</p><p><b>Boa noite, escudo,</b> disse Steve. <b>Voce tambem merece descansar.</b></p><p>Ele foi ao banheiro, lavou o rosto e escovou os dentes, porque ate super-herois cuidam dos dentes!, e se deitou na cama confortavel.</p><p>Steve olhou para o teto e pensou em todas as coisas boas do dia. A crianca que ele tinha ajudado a atravessar a rua. O velhinho que precisava carregar as compras. O sorriso das pessoas quando viram que estava tudo bem.</p><p><b>E por isso que vale a pena,</b> ele murmurou para si mesmo.</p><p>Devagar, os olhos foram ficando pesados. O cobertor estava quentinho, o travesseiro estava macio, e la fora o vento soprava bem de leve nas arvores. E assim o Capitao America dormiu profundamente, sonhando com campos verdes e amigos queridos. 🌿</p>"
+      },
+      {
+        t: "Steve e a Cancao de Ninar",
+        b: "<p>Steve Rogers era um super-soldado, forte e corajoso. Mas tinha um segredo que poucos sabiam: ele adorava ouvir musica antes de dormir.</p><p>Naquela noite, ele colocou uma musica bem calma no radio velho que ficava no cantinho do quarto. Era uma melodia suave, sem pressa, que ia enchendo o ambiente de paz.</p><p>Steve deitou na cama, cruzou os bracos atras da cabeca e ficou ouvindo. As notas musicais pareciam flutuar pelo ar como bolhas de sabao, cada uma levando embora um pouquinho do cansaco do dia.</p><p>Ele pensou nos amigos, no Buck, no Sam, em todos que defendia com tanto amor. E sentiu o coracao quentinho de gratidao.</p><p><b>Vale a pena lutar pelo que a gente ama,</b> ele pensou, enquanto os olhos iam fechando.</p><p>A musica continuou tocando baixinho, e Steve Rogers, o Capitao America, adormeceu com um sorriso tranquilo no rosto. 🎵</p>"
+      },
+      {
+        t: "A Promessa do Capitao",
+        b: "<p>Toda noite, antes de dormir, o Capitao America tinha um ritual. Ele ia ate a janela, olhava para o ceu e fazia uma promessa silenciosa.</p><p>Prometia ser corajoso no dia seguinte. Prometia ajudar quem precisasse. Prometia nunca desistir do que e certo.</p><p>Naquela noite nao foi diferente. Steve olhou para a lua cheia que brilhava la fora e sussurrou sua promessa. Depois se virou, deitou na cama e respirou fundo.</p><p>O quarto estava silencioso. La fora, a cidade dormia. E o Capitao America sabia que amanha seria mais um dia de fazer o bem.</p><p>Com esse pensamento quentinho no peito, ele fechou os olhos e deixou o sono chegar devagarzinho, como uma onda mansa que vai cobrindo a areia da praia. 🌊</p>"
+      }
+    ]
+  },
+  pantera: {
+    nome: "Pantera Negra",
+    emoji: "🐾",
+    l: [
+      {
+        t: "As Estrelas de Wakanda",
+        b: "<p>Quando o sol se punha em Wakanda, o ceu ficava de um laranja lindo, depois roxo, depois todo cheio de estrelas. Era o momento favorito do rei T'Challa.</p><p>Ele subia ate o terraco do palacio, olhava para o ceu e ficava em silencio por um tempinho. Os sons da cidade iam diminuindo. Os passaros paravam de cantar. A floresta ao redor sussurrava com o vento da noite.</p><p><b>Cada estrela e um sonho esperando para ser vivido,</b> T'Challa dizia baixinho.</p><p>Depois ele descia, retirava seu traje roxo e brilhante com cuidado. A Pantera Negra era poderosa, mas todo poder precisa de descanso para se renovar.</p><p>T'Challa se deitou na cama e respirou fundo tres vezes, bem devagar. <b>Uma... duas... tres...</b> Cada respiracao ia soltando o cansaco do dia.</p><p>La fora, os grilos comecaram a cantar. As folhas da floresta balancavam suavemente. Uma brisa fresca entrou pela janela. T'Challa sorriu, fechou os olhos e deixou o sono chegar. Naquela noite, ele sonhou com seu povo feliz e com as estrelas bem pertinho. 🌙</p>"
+      },
+      {
+        t: "T'Challa e a Cancao da Floresta",
+        b: "<p>A floresta de Wakanda tinha seus proprios sons a noite. T'Challa conhecia cada um deles desde pequeno.</p><p>O canto do grilo era como uma musica de ninar. O vento nas folhas altas parecia um sussurro gentil. A agua do rio la longe fazia um barulhinho de <b>glu, glu, glu...</b> muito calminho.</p><p>Naquela noite, T'Challa abriu a janela do quarto para ouvir melhor a cancao da floresta. Sentou na beira da cama e ficou escutando de olhos fechados.</p><p>Aos poucos, o corpo foi relaxando. Os ombros desceram. A respiracao ficou mais lenta. Era como se a propria Wakanda estivesse cantando uma musica especial so para ele.</p><p>T'Challa se deitou devagarzinho e murmurou: <b>Obrigado, Wakanda.</b></p><p>E adormeceu embalado pela cancao da floresta, protegido e em paz. 🌿</p>"
+      }
+    ]
+  },
+  thor: {
+    nome: "Thor",
+    emoji: "⚡",
+    l: [
+      {
+        t: "O Trovao Mansinho",
+        b: "<p>Thor tinha tido um dia e tanto. Ele tinha voado pelos quatro cantos do mundo com seu martelo Mjolnir, chamado alguns raios aqui e ali, e ainda tinha tempo de ajudar umas ovelhas que tinham se perdido numa colina na Noruega.</p><p>Quando chegou em casa, ele pousou o Mjolnir com muito, muito cuidado ao lado da cama. <b>Tchim...</b> Bem devagarinho, para nao acordar ninguem.</p><p><b>Ate os guerreiros de Asgard precisam dormir,</b> disse ele com sua voz grossa, mas desta vez em voz bem baixinha.</p><p>Thor olhou pela janela. O ceu estava cheio de nuvens, mas nenhuma delas trovejava. Era como se a natureza soubesse que era hora de paz.</p><p>Ele foi ate a cama, deitou com cuidado, a cama rangeu um pouquinho com todo aquele musculo, e puxou o cobertor.</p><p>La fora, a chuva comecou a cair de mansinho, fazendo um barulhinho gostoso no telhado: <b>plic, plic, plic...</b> Era como se a chuva estivesse cantando uma cancao de ninar so para ele. Os olhos dourados foram fechando, fechando... e Thor adormeceu com um sorriso. ⭐</p>"
+      },
+      {
+        t: "Thor e o Cobertor das Nuvens",
+        b: "<p>Certa noite em Asgard, Thor estava deitado na cama olhando pela janela quando viu algo lindo: as nuvens tinham se juntado no ceu formando um cobertor imenso e fofinho.</p><p><b>Que cobertor bonito,</b> ele pensou, esfregando os olhos de sono.</p><p>As nuvens eram brancas e macias como algodao, e elas iam se movendo bem devagar pelo ceu escuro cheio de estrelas. Era um espetaculo silencioso e bonito.</p><p>Thor respirou fundo e sentiu o ar fresquinho da noite. La fora estava tudo quieto. Ate o Mjolnir parecia estar descansando, sem nenhuma vontade de voar naquela hora.</p><p>Aos poucos, Thor foi ficando com os olhos pesados. As nuvens continuavam sua danca lenta e silenciosa no ceu, e o filho de Odin foi pegando no sono, embalado pela tranquilidade da noite. 🌙</p>"
+      },
+      {
+        t: "Thor e o Sono de Guerreiro",
+        b: "<p>O deus do trovao chegou em casa depois de uma longa jornada. Estava com o cabelo bagunçado, a capa um pouco rasgada, mas com o coracao cheio de alegria: tinha ajudado muita gente naquele dia.</p><p>Ele tomou um banho quente, colocou seu pijama confortavel, sim, Thor tem pijama!, e foi para a cama.</p><p><b>Um guerreiro que nao dorme bem nao luta bem,</b> ele dizia sempre. E era verdade.</p><p>Thor deitou, esticou os bracos enormes, bocejou alto, bem alto, como um trovao suave, e fechou os olhos.</p><p>Aquela noite, ele sonhou que voava pelo espaco entre galaxias coloridas, cada uma brilhando de uma cor diferente: azul, roxo, dourado. Era o sonho mais bonito que um filho de Asgard podia ter.</p><p>E Thor dormiu assim, com um sorriso no rosto e o coracao de heroi bem descansado. 💫</p>"
+      }
+    ]
+  },
+  homem_aranha: {
+    nome: "Homem Aranha",
+    emoji: "🕷️",
+    l: [
+      {
+        t: "Peter e a Teia da Noite",
+        b: "<p>Peter Parker voltou para casa pulando pelos telhados da cidade. Era tarde, as luzes dos predios iam se apagando uma a uma, como se a cidade inteira estivesse indo dormir.</p><p>Ele entrou pela janela do quarto devagarzinho para nao acordar a Tia May, tirou o traje do Homem Aranha com cuidado e o dobrou certinho em cima da cadeira.</p><p>Tomou um copo de leite quentinho na cozinha, porque Peter sempre tomava leite antes de dormir, e voltou para o quarto.</p><p>Deitou na cama e olhou para o teto. La fora, a cidade continuava seu barulho suave de carros e vento. Mas no quarto de Peter, estava tudo quieto e aconchegante.</p><p><b>Foi um bom dia,</b> ele pensou, sorrindo para o teto.</p><p>E o Homem Aranha, que de dia voava entre predios enormes, dormiu como um menininho tranquilo, embalado pelo silencio da noite. 🕸️</p>"
+      },
+      {
+        t: "Peter e o Diario dos Sonhos",
+        b: "<p>Peter Parker tinha um caderninho especial do lado da cama. Toda noite, antes de dormir, ele escrevia tres coisas boas que tinham acontecido naquele dia.</p><p>Naquela noite ele escreveu: <b>Um: ajudei uma velhinha que tinha se perdido. Dois: a Tia May fez meu macarrao favorito. Tres: vi um passaro raro no parque.</b></p><p>Depois fechou o caderninho, apagou a luz e deitou na cama macia.</p><p>Peter sabia que os herois nao precisam ser perfeitos todos os dias. So precisam fazer o melhor que podem, com amor e dedicacao.</p><p>Com esse pensamento quentinho no coracao, ele fechou os olhos. La fora, a cidade brilhava com milhares de janelas iluminadas, cada uma com sua propria historia.</p><p>E Peter Parker adormeceu, pronto para mais um dia de aventuras amanha. 📓</p>"
+      }
+    ]
+  },
+  hulk: {
+    nome: "Hulk",
+    emoji: "💚",
+    l: [
+      {
+        t: "Bruce e o Descanso Verde",
+        b: "<p>Bruce Banner tinha um segredo para dormir bem: ele respirava fundo dez vezes antes de fechar os olhos.</p><p>Uma, duas, tres... cada respiracao era um pouquinho mais calma que a anterior. Quatro, cinco, seis... os ombros iam relaxando. Sete, oito, nove... a mente ia ficando quieta como um lago sem vento. Dez.</p><p><b>Perfeito,</b> ele murmurou.</p><p>Bruce sabia que quando a gente esta descansado, tudo fica melhor. Fica mais calmo, mais feliz, mais gentil. E gentileza, ele aprendeu, e muito mais poderosa que qualquer musculo verde.</p><p>Ele deitou na cama confortavel, puxou o cobertor verde, claro que era verde!, e sorriu para o teto.</p><p>La fora a lua estava cheia e redonda. Bruce fechou os olhos e o Hulk, o maior e mais forte de todos, dormiu como um bebezinho, tranquilo e feliz. 💚</p>"
+      },
+      {
+        t: "O Sonho do Hulk Gentil",
+        b: "<p>O Hulk era enorme e forte, mas poucos sabiam que ele tambem era muito gentil.</p><p>Naquela noite, depois de ajudar a reconstruir uma ponte que tinha caido, o Hulk sentou numa colina perto da cidade e olhou para o ceu estrelado.</p><p>As estrelas eram tantas que parecia que alguem tinha jogado purpurina no ceu escuro. O Hulk ficou olhando em silencio por um tempinho, com um sorriso enorme no rosto enorme.</p><p>Aos poucos, ele foi ficando menor, menor, menor... ate virar o Bruce Banner de novo, cansado e feliz.</p><p>Bruce deitou na grama macia, usou o braco como travesseiro e olhou para as estrelas uma ultima vez antes de fechar os olhos.</p><p>Naquela noite, ele sonhou que era um Hulk gentil que plantava flores gigantes por onde passava. E foi o sonho mais bonito da sua vida. 🌸</p>"
+      }
+    ]
+  },
+  viuva: {
+    nome: "Viuva Negra",
+    emoji: "🕸️",
+    l: [
+      {
+        t: "Natasha e a Noite Quieta",
+        b: "<p>Natasha Romanoff era uma das agentes mais habilidosas do mundo. Ela sabia lutar, sabia correr, sabia fazer tudo com precisao. Mas a coisa que ela mais gostava no fim do dia era de silencio.</p><p>Ela chegou em casa naquela noite, tomou um banho quente e demorado, fez um cha de camomila e foi para a varanda ver a cidade la embaixo.</p><p>As luzes da cidade piscavam la longe como vagalumes. O vento trouxe um cheirinho de chuva que estava chegando. Natasha respirou fundo e deixou o cansaco do dia ir embora junto com o ar que soltava.</p><p><b>Ja fiz o suficiente hoje,</b> ela pensou. <b>Amanha e outro dia.</b></p><p>Ela foi para a cama, deitou do jeitinho que gostava, abraçou o travesseiro e fechou os olhos. Em menos de um minuto, a Viuva Negra dormia profundamente, pronta para mais um dia de fazer o bem. 🌙</p>"
+      }
+    ]
+  }
+};
+
+var ch = "ferro";
+var ci = 0;
+
+function init() {
+  var hrow = document.getElementById("hrow");
+  var herois = Object.keys(D);
+  for (var i = 0; i < herois.length; i++) {
+    (function(h) {
+      var btn = document.createElement("button");
+      btn.className = "hbtn" + (h === "ferro" ? " on" : "");
+      btn.id = "b-" + h;
+      btn.innerHTML = "<span class='eml'>" + D[h].emoji + "</span>" + D[h].nome;
+      btn.onclick = function() { setHero(h); };
+      hrow.appendChild(btn);
+    })(herois[i]);
+  }
+
+  document.getElementById("btnNext").onclick = function() { nx(); };
+  document.getElementById("btnPrev").onclick = function() { pv(); };
+
+  render();
+}
+
+function setHero(h) {
+  ch = h; ci = 0;
+  var btns = document.querySelectorAll(".hbtn");
+  for (var i = 0; i < btns.length; i++) btns[i].className = "hbtn";
+  document.getElementById("b-" + h).className = "hbtn on";
+  render();
+}
+
+function nx() { var l = D[ch].l.length; ci = (ci + 1) % l; render(); }
+function pv() { var l = D[ch].l.length; ci = (ci - 1 + l) % l; render(); }
+
+function render() {
+  var o = D[ch], s = o.l[ci];
+  document.getElementById("se").textContent = o.emoji;
+  document.getElementById("st").textContent = s.t;
+  document.getElementById("sb").innerHTML = s.b;
+  document.getElementById("ct").textContent = "Historia " + (ci + 1) + " de " + o.l.length;
+  window.scrollTo(0, 0);
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
